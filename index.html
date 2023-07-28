@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html><head>
+    <title>𝙵𝚛𝚘𝚠𝚗𝚠𝚒𝚝𝚑𝚊𝚗𝙵 - Fun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/jpg" href="icon.jpg">
+    <style>
+        /* CSS styles for the FrownwithanF main page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #aa0000;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .cta-button {
+            background-color: #aa0000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .about-me {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .social-icon {
+            color: #aa0000;
+            font-size: 24px;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .social-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 0;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .social-icon:hover {
+            color: #ff0000;
+        }
+
+        /* Center the welcome image */
+        .welcome-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>𝙵𝚛𝚘𝚠𝚗𝚠𝚒𝚝𝚑𝚊𝚗𝙵</h1>
+    </header>
+    
+    <div class="welcome-image">
+    <a href="https://frownwithanf.github.io/home/">
+        <img src="icon.jpg" alt="Site Icon">
+    </a>
+</div>
+    <div class="hero-section">
+        <h2>Welcome to my site</h2>
+        <p>If you have a video Idea or something, you can send one through here.</p>
+        <textarea id="idea-textbox" placeholder="Enter your idea here"></textarea>
+        <button onclick="sendMessage()">Send Idea</button>
+    </div>
+    <div class="about-me" id="about-me">
+        <h2>Games (ChatGPT Made!):</h2>
+        <h3>Title: AI Snake</h3>
+<div class="welcome-image">
+    <a href="https://frownwithanf.github.io/home/">
+        <img src="icon.jpg" alt="Site Icon">
+    </a>
+</div>
+    </div>
+    <div class="social-links" id="social-links">
+        <h2>Contacts</h2>
+        <a href="https://steamcommunity.com/profiles/76561199118473612/" class="social-icon" target="_blank"><i class="fab fa-steam"></i></a>
+        <a href="https://www.roblox.com/users/2463926477/profile" class="social-icon" target="_blank"><img src="roblox.png" alt="Roblox"></a>
+    </div>
+    
+    <script>
+        function sendMessage() {
+            const webhookURL = "https://discord.com/api/webhooks/1134511009701314570/Vt4bIB8pE_eKL02N7JOZnqXlV9xoMUJAbwhQwrgbfo9OQIroPa1XeCycbkrzWtUnIl3R";
+            const ideaTextbox = document.getElementById("idea-textbox");
+            const ideaMessage = ideaTextbox.value;
+
+            // Send the message to the Discord bot via a POST request
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    content: ideaMessage
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Idea sent successfully!");
+                } else {
+                    alert("Failed to send idea. Please try again later.");
+                }
+            })
+            .catch(error => {
+                console.error("Error sending message:", error);
+                alert("An error occurred while sending the idea. Please try again later.");
+            });
+        }
+    </script>
+
+</body></html>
