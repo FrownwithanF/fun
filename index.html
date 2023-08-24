@@ -107,6 +107,7 @@
     <div class="hero-section">
         <h2>Welcome to my site</h2>
         <p>If you have a video Idea or something, you can send one through here.</p>
+        <textarea id="name-input" placeholder="Sender's Name / Username"></textarea>
         <textarea id="idea-textbox" placeholder="Enter your idea here"></textarea>
         <button onclick="sendMessage()">Send Idea</button>
     </div>
@@ -124,33 +125,36 @@
     </div>
     
     <script>
-        function sendMessage() {
-            const webhookURL = "https://discord.com/api/webhooks/1134511009701314570/Vt4bIB8pE_eKL02N7JOZnqXlV9xoMUJAbwhQwrgbfo9OQIroPa1XeCycbkrzWtUnIl3R";
-            const ideaTextbox = document.getElementById("idea-textbox");
-            const ideaMessage = ideaTextbox.value;
+function sendMessage() {
+    const webhookURL = "https://discord.com/api/webhooks/1134511009701314570/Vt4bIB8pE_eKL02N7JOZnqXlV9xoMUJAbwhQwrgbfo9OQIroPa1XeCycbkrzWtUnIl3R";
+    const ideaTextbox = document.getElementById("idea-textbox");
+    const nameInput = document.getElementById("name-input");  // Assuming you add an input field with id "name-input"
+    const ideaMessage = ideaTextbox.value;
+    const botName = nameInput.value;  // Get the name from the input field
 
-            // Send the message to the Discord bot via a POST request
-            fetch(webhookURL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    content: ideaMessage
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("Idea sent successfully!");
-                } else {
-                    alert("Failed to send idea. Please try again later.");
-                }
-            })
-            .catch(error => {
-                console.error("Error sending message:", error);
-                alert("An error occurred while sending the idea. Please try again later.");
-            });
+    // Send the message to the Discord bot via a POST request
+    fetch(webhookURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            content: ideaMessage,
+            username: botName  // Set the bot's username
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Idea sent successfully!");
+        } else {
+            alert("Failed to send idea. Make sure you entered a name and an idea.");
         }
+    })
+    .catch(error => {
+        console.error("Error sending message:", error);
+        alert("An error occurred while sending the idea. Please try again later.");
+    });
+}
     </script>
 
 </body></html>
