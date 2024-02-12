@@ -1,0 +1,16 @@
+<html><head></head><body style="margin: 0;"><header>
+
+<link rel="stylesheet" href="css/style.css">
+    <script src="js/UnityProgress.js"></script>
+	<script src="js/baldi.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "baldi.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+    </script>
+</header>
+
+<div class="webgl-content">
+        <div id="gameContainer" style="width: 800px; height: 560px; margin: auto"></div>
+        </div>
+  <script src="js/firebase-app.js"></script>
+
+</body></html>
