@@ -89,11 +89,18 @@
             <!-- Pop songs will be added dynamically here -->
         </div>
     </div>
+    <div class="category" id="rockContainer">
+        <div class="category-title">Rock</div>
+        <div class="songs" id="rockSongsContainer">
+            <!-- Rock songs will be added dynamically here -->
+        </div>
+    </div>
 </div>
 <script>
     window.addEventListener('DOMContentLoaded', function() {
         loadCategorySongs('jazzContainer', 'Jazz.txt');
         loadCategorySongs('popContainer', 'Pop.txt');
+        loadCategorySongs('rockContainer', 'Rock.txt');
     });
 
     async function loadCategorySongs(containerId, categoryFile) {
