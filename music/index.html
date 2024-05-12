@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ai Music</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+        background-color: #f2f2f2; /* Light grey background */
+        color: #444; /* Dark grey text color */
+    }
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Put behind other content */
+        background-image: url('background.jpg');
+        background-size: auto; /* Auto size */
+        background-repeat: repeat-y; /* Repeat vertically */
+        background-attachment: fixed; /* Fixed position */
+        filter: blur(10px); /* Apply blur filter */
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 8px; /* Reduced padding */
+        border-radius: 20px; /* Curved frame */
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for content */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    }
+    .category {
+        margin-bottom: 20px;
+    }
+    .category-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333; /* Slightly darker grey text color for titles */
+    }
+    .songs {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    .song {
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ddd; /* Light grey background for song containers */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for each song */
+    }
+    .thumbnail {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    audio {
+        width: 100%;
+        margin-top: 10px;
+        background-color: #fff; /* White background for audio player */
+        border: 1px solid #ddd; /* Light grey border for audio player */
+        border-radius: 5px; /* Curved corners for audio player */
+    }
+    .title {
+        margin-top: 5px;
+        text-align: center;
+        color: #666; /* Grey text color for song titles */
+    }
+</style>
+</head>
+<body>
+<div class="background"></div>
+<div class="container">
+    <div class="category" id="jazzContainer">
+        <div class="category-title">Jazz</div>
+        <div class="songs" id="jazzSongsContainer">
+            <!-- Jazz songs will be added dynamically here -->
+        </div>
+    </div>
+    <div class="category" id="popContainer">
+        <div class="category-title">Pop</div>
+        <div class="songs" id="popSongsContainer">
+            <!-- Pop songs will be added dynamically here -->
+        </div>
+    </div>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        loadCategorySongs('jazzContainer', 'Jazz.txt');
+        loadCategorySongs('popContainer', 'Pop.txt');
+    });
+
+    async function loadCategorySongs(containerId, categoryFile) {
+        const container = document.getElementById(containerId);
+        const songsContainer = document.createElement('div');
+        songsContainer.classList.add('songs');
+
+        // Fetch song list from category file
+        const response = await fetch(categoryFile);
+        const songList = await response.text();
+        const songs = songList.split('\n').filter(Boolean); // Split song list by lines and remove empty lines
+
+        // Generate song elements
+        for (let songName of songs) {
+            // Create thumbnail element
+            const thumbnail = document.createElement('img');
+            thumbnail.classList.add('thumbnail');
+            thumbnail.src = `${songName}.png`;
+            thumbnail.alt = songName;
+
+            // Create audio element
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.loop = true; // Set loop to true
+            const source = document.createElement('source');
+            source.src = `${songName}.mp3`;
+            source.type = 'audio/mpeg';
+            audio.appendChild(source);
+
+            // Fetch title text
+            const titleText = await fetch(`${songName}.txt`).then(response => response.text());
+
+            // Create title element
+            const titleElement = document.createElement('div');
+            titleElement.classList.add('title');
+            titleElement.textContent = titleText;
+
+            // Create song container
+            const songContainer = document.createElement('div');
+            songContainer.classList.add('song');
+            songContainer.appendChild(thumbnail);
+            songContainer.appendChild(audio);
+            songContainer.appendChild(titleElement);
+
+            // Add song container to the songs container
+            songsContainer.appendChild(songContainer);
+        }
+
+        // Add songs container to the category container
+        container.appendChild(songsContainer);
+    }
+</script>
+
+</body>
+</html>
