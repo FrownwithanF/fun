@@ -1,0 +1,1 @@
+sudo apt update && sudo apt install -y default-jdk && curl -O https://getbukkit.org/latest-dev/craftbukkit-1.5.2-R1.0.jar && java -Xms512M -Xmx1024M -jar craftbukkit-1.5.2-R1.0.jar
