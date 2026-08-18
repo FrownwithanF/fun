@@ -1,0 +1,15 @@
+{
+    "baseoa": {
+        "files": [
+            {"src": "baseoa/pak0.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak1-maps.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak2-players.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak2-players-mature.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak4-textures.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak5-TA.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak6-misc.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak6-patch085.pk3", "dst": "/baseoa"},
+            {"src": "baseoa/pak6-patch088.pk3", "dst": "/baseoa"}
+        ]
+    }
+}
